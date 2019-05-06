@@ -1,20 +1,27 @@
 
 $('#signup_button').on('click', function(){
-  // cargar los valores de password, email, name, age
-  json_to_send = {
-    "password" : password,
-    "email": email,
-    "name": name,
-    "age": age
-  };
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+  var name = document.getElementById("name").value;
+  var age = document.getElementById("age").value;
 
+  json_to_send = {
+    password: password,
+    email: email,
+    name: name,
+    age: age
+  };
   json_to_send = JSON.stringify(json_to_send);
 
   $.ajax({
     url: 'https://miguelexamenfinal.herokuapp.com/users',
 
     headers: {
-        'Content-Type':'application/json'
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": true,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET",
+      "Access-Control-Allow-Headers": "application/json"
     },
     method: 'POST',
     dataType: 'json',

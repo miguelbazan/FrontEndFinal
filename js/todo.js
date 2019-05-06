@@ -8,7 +8,7 @@ var todos = document.querySelectorAll("input[type=checkbox]");
 function updateTodo(id, completed) {
   // revisen si completed es booleano o string
   json_to_send = {
-    "completed" : completed
+    completed: completed
   };
   json_to_send = JSON.stringify(json_to_send);
   $.ajax({
@@ -35,8 +35,8 @@ function loadTodos() {
     url: 'https://miguelexamenfinal.herokuapp.com/todos',
 
     headers: {
-        'Content-Type':'application/json',
-        'Authorization': 'Bearer ' + token
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
     },
     method: 'GET',
     dataType: 'json',
@@ -44,10 +44,8 @@ function loadTodos() {
       console.log(data)
 
       for( let i = 0; i < data.length; i++) {
-        // aqui va su código para agregar los elementos de la lista
+        addTodo(data[i]._id, data[i].description, data[i].completed);
         console.log(data[i].description)
-        // algo asi:
-        // addTodo(data[i]._id, data[i].description, data[i].completed)
       }
     },
     error: function(error_msg) {
